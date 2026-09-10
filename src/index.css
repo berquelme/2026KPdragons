@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-impact {
+    font-family: Impact, sans-serif;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
