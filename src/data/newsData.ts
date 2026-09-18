@@ -27,11 +27,11 @@ export const NEWS_ITEMS: NewsItem[] = [
     icon: 'military_tech',
   },
   {
-    id: 'kits',
-    title: 'New Team Kits are Here!',
-    date: 'Oct 08, 2026',
-    excerpt: 'The new uniforms have arrived! Pick yours up this Thursday before practice. They look amazing!',
-    tag: 'CLUB NEWS',
-    icon: 'checkroom',
+    id: 'fuel-their-fire',
+    title: '❤️ Beyond the Final Whistle: Fuel Their Fire 🔥',
+    date: 'Sep 18, 2026',
+    excerpt: 'After each game, tell your child one thing they did that you truly enjoyed watching. Hearing this from us builds confidence, resilience, and joy far more than any score.',
+    tag: 'COACH NOTE',
+    icon: 'favorite',
   },
 ];

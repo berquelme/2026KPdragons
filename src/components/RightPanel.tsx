@@ -2,6 +2,7 @@ import React from 'react';
 import { PageType } from '../types';
 import { MATCHES_DATA } from '../data/matches';
 import { teamData } from '../data/teamData';
+import { useCountdown } from '../hooks/useCountdown';
 
 interface RightPanelProps {
   onNavigate: (page: PageType) => void;
@@ -13,6 +14,9 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
 
   // Dynamically find the very next fixture relative to today
   const nextMatch = MATCHES_DATA.find((m) => new Date(m.dateStr || '') >= now) || MATCHES_DATA[0];
+
+  // Live countdown to next match
+  const matchCountdown = useCountdown(nextMatch?.dateStr || '');
 
   // Format date display safely
   const formattedDate = nextMatch?.dateStr
@@ -43,6 +47,7 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
   return (
     <div className="w-[300px] h-screen sticky top-0 bg-white/30 backdrop-blur-2xl border-l border-slate-200/50 flex flex-col p-6 overflow-hidden z-50">
       <div className="flex flex-col gap-8">
+        
         {/* Next Match Widget */}
         {nextMatch && (
           <div className="bg-[#E53935] rounded-[32px] p-6 text-white relative overflow-hidden group shadow-xl shadow-red-500/10">
@@ -56,13 +61,67 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
               <h4 className="font-impact text-2xl mb-1 uppercase text-white truncate">
                 vs {nextMatch.opponent}
               </h4>
-              <p className="text-white/80 text-xs font-medium mb-4 italic">
+              <p className="text-white/80 text-xs font-medium mb-3 italic">
                 {formattedDate} @ {nextMatch.timeDisplay}
               </p>
+
+              {/* Live Countdown Grid - Stadium Scoreboard */}
+              <div className="mb-4 bg-gradient-to-b from-black/40 to-black/20 rounded-2xl p-3 backdrop-blur-md border border-white/15 shadow-inner">
+                <div className="flex items-center justify-between mb-2 px-1">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-[#FFCA28] flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[13px] text-amber-400">local_fire_department</span>
+                    Kickoff Countdown
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                </div>
+
+                {matchCountdown.isExpired ? (
+                  <p className="text-center text-xs font-black uppercase tracking-wider text-[#FFCA28] py-2">
+                    Match Underway!
+                  </p>
+                ) : (
+                  <div className="grid grid-cols-4 gap-1.5 text-center">
+                    <div className="bg-white border-2 border-[#FFCA28] rounded-xl py-2 shadow-sm">
+                      <span className="block font-impact text-xl leading-tight text-slate-950">
+                        {matchCountdown.days}
+                      </span>
+                      <span className="text-[8px] font-black uppercase tracking-wider text-[#E53935]">
+                        Days
+                      </span>
+                    </div>
+                    <div className="bg-white border-2 border-[#FFCA28] rounded-xl py-2 shadow-sm">
+                      <span className="block font-impact text-xl leading-tight text-slate-950">
+                        {matchCountdown.hours}
+                      </span>
+                      <span className="text-[8px] font-black uppercase tracking-wider text-[#E53935]">
+                        Hrs
+                      </span>
+                    </div>
+                    <div className="bg-white border-2 border-[#FFCA28] rounded-xl py-2 shadow-sm">
+                      <span className="block font-impact text-xl leading-tight text-slate-950">
+                        {matchCountdown.minutes}
+                      </span>
+                      <span className="text-[8px] font-black uppercase tracking-wider text-[#E53935]">
+                        Min
+                      </span>
+                    </div>
+                    <div className="bg-white border-2 border-[#FFCA28] rounded-xl py-2 shadow-sm">
+                      <span className="block font-impact text-xl leading-tight text-slate-950">
+                        {matchCountdown.seconds}
+                      </span>
+                      <span className="text-[8px] font-black uppercase tracking-wider text-[#E53935]">
+                        Sec
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Match Schedule Pill Button */}
               <button 
                 type="button"
                 onClick={() => onNavigate('MATCHES')}
-                className="w-full py-2.5 bg-white text-[#E53935] rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-yellow-400 hover:text-slate-900 transition-colors shadow-sm cursor-pointer"
+                className="w-full py-2.5 bg-[#FFCA28] text-[#E53935] rounded-full border-2 border-white font-black text-[11px] uppercase tracking-wider hover:brightness-105 transition-all shadow-md cursor-pointer"
               >
                 Match Schedule
               </button>
