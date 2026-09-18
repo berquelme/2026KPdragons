@@ -9,22 +9,21 @@ export interface NewsItem {
 }
 
 export const NEWS_ITEMS: NewsItem[] = [
+{
+  id: 'rhino-charge-award',
+  title: ' 🦏 The Rhino Charge Award 🏆 : Bravery & Courage',
+  date: 'Sep 18, 2026',
+  excerpt: 'Soccer involves natural contact, and taking a tumble is not ideal, but it happens! In training, we practice preparing for those collisions safely. This award honors the player who took a hit, bounced right back up with a smile, and kept having fun.',
+  tag: 'TEAM TRADITION',
+  icon: 'shield',
+},
   {
-    id: 'rooney-visit',
-    title: 'LEGEND ALERT: Wayne Rooney Visits the Nest!',
-    date: 'Oct 15, 2026',
-    excerpt: 'The former England captain dropped by to watch our practice and shared some of his scoring secrets!',
-    tag: 'SPECIAL GUEST',
-    highlight: true,
-    icon: 'star',
-  },
-  {
-    id: '400-goals',
-    title: 'SQUAD GOALS: We Just Hit 400!',
-    date: 'Oct 14, 2026',
-    excerpt: "Charlie's screamer in the second half was our 400th goal as a club! Pizza for everyone!",
-    tag: 'MILESTONE',
-    icon: 'military_tech',
+    id: 'team-snacks',
+    title: '🍪 Post-Game Fuel: Healthy Snacks & Safety 🍌',
+    date: 'Sep 18, 2026',
+    excerpt: 'Family and friends are welcome to bring post-game snacks! Please focus on healthy choices like bananas, fruit, and water. Before handing anything out, I will always check with parents first to confirm it is okay for their child. Please let me know about any allergies so we keep everyone safe.',
+    tag: 'TEAM REMINDER',
+    icon: 'nutrition',
   },
   {
     id: 'fuel-their-fire',

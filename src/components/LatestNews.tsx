@@ -56,9 +56,9 @@ export const LatestNews: React.FC = () => {
               <h3 className="text-xl font-normal text-amber-900 mb-3 leading-tight group-hover:text-red-600 transition-colors font-kids">
                 {item.title}
               </h3>
-              <p className="text-sm text-amber-800/70 mb-6 flex-1 leading-relaxed italic">
-                "{item.excerpt}"
-              </p>
+             <p className="text-[#8D6E63] leading-relaxed font-medium mb-4">
+  {item.excerpt}
+</p>
               <button 
                 type="button"
                 className="text-red-600 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
