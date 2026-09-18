@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --color-team-primary: var(--team-primary, #E53935);
+  --color-team-secondary: var(--team-secondary, #FFD54F);
+}
+
+:root {
+  --team-primary: #E53935;
+  --team-secondary: #FFD54F;
+}
+
 @layer utilities {
   .font-impact {
     font-family: Impact, sans-serif;

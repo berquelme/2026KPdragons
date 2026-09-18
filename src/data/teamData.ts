@@ -1,0 +1,50 @@
+import { TeamInfo } from '../types';
+
+export const teamData: TeamInfo = {
+  name: 'KNAPP & Schlappi',
+  shortName: 'Dragons',
+  mascot: 'Baby Dragons',
+  ageGroup: 'U8',
+  season: 'Fall 2026',
+  theme: {
+    primary: '#E53935',
+    secondary: '#FFD54F',
+  },
+  slogan: 'Relentless effort, team spirit, and pure joy.',
+  heroSubtitle: 'The Nest of Future Legends',
+  heroHeadlineTop: 'Bright Futures,',
+  heroHeadlineBottom: 'Bigger Dreams',
+  mascotImage: '/scorchey1.png',
+  heroImage: '/soccerGame.jpg',
+  homeFieldTitle: 'Dragon Nest',
+  homeFieldDesc: 'Join us at 360 Elm Street for training and weekend matches.',
+  trainingTitle: 'Training Camp',
+  trainingDesc: 'Sharpening skills every Thursday under the golden sun.',
+  mvpAwardName: 'Dragon of the Match',
+  cheerWallTitle: 'SEND YOUR ROAR',
+  cheerButtonText: 'SEND ROAR', // or 'SEND CHEER' or 'ADD YOUR ROAR'
+  cheerWallSubtitle: "Post an encouraging cheer to the Dragon's Den",
+  cheerBadge: "The Dragon's Den",
+  coachPasskey: 'dragons8',
+  formspreeEndpoint: 'https://formspree.io/f/mjyvapqj',
+  oathTitle: 'THE DRAGON OATH',
+  powersTitle: 'The 7 Dragon Powers',
+  powers: [
+    { id: 1, title: 'Be the Boss of Your Move', subtitle: 'Making Decisions' },
+    { id: 2, title: 'Find Your Superpower', subtitle: 'Discover Your Superpower' },
+    { id: 3, title: 'Oops, Shake It Off, Try Again!', subtitle: 'Making Mistakes and Getting Back Quickly' },
+    { id: 4, title: 'Never Give Up, Keep Going!', subtitle: 'Working Through Discouragement' },
+    { id: 5, title: 'Practice Makes Magic', subtitle: 'Taking Initiative and Trusting the Learning Curve' },
+    { id: 6, title: 'Take a Breath and Jump Back In', subtitle: 'Managing Energy: Brush It Off and Get Back In' },
+    { id: 7, title: 'Think Fast, Play Smart', subtitle: 'Solving Problems: Sense of Urgency' },
+  ],
+  contactStaff: [
+    { role: 'Head Coach', name: 'Ber Almeida', icon: 'sports', email: 'ber@dragonsquad.com' },
+    { role: 'Team Manager', name: 'Megan Daggett', icon: 'assignment_ind', email: 'megan@dragonsquad.com' },
+    { role: 'Team Manager', name: 'Ash Avellaneda', icon: 'groups', email: 'ash@dragonsquad.com' },
+  ],
+  groundsAddress: {
+    street: '360 Elm Street',
+    cityStateZip: 'Penn Yan, NY 14527',
+  },
+};

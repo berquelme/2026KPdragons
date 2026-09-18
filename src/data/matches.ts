@@ -45,6 +45,23 @@ export const MATCHES_DATA: Match[] = [
     timeDisplay: '8:00 AM',
     location: 'PENN YAN COMPLEX',
     opponent: 'STORK INSURANCE',
+    result: 'WIN 2 - 0',
+    resultType: 'win',
+    dragonOfTheMatch: "Jamie, Pax",
+    notes: 'Great teamwork and relentless hustle',
+    stats: [
+      // Jamie Daggett (#7): ⚽️x2 
+      { playerNum: 7, goals: 2, assists: 1 },
+
+      // Tess Almeida (#3): 🤝
+      { playerNum: 3, assists: 1 },
+
+
+      // Elijah Sherman (#9): ✋🏽
+      { playerNum: 9, saves: 2, assists: 1 },
+
+
+    ],
   },
   {
     id: 3,

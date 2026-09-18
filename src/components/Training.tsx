@@ -1,26 +1,8 @@
 import React from 'react';
+import { trainingData } from '../data/trainingData';
+import { teamData } from '../data/teamData';
 
 export const Training: React.FC = () => {
-  const sessions = [
-    { 
-      day: 'Thursday September 10', 
-      time: '4:00 PM - 5:00 PM', 
-      focus: 'Skills & Match Play', 
-      icon: 'rocket_launch', 
-      color: 'bg-[#E53935]',
-      phases: [
-        { time: '4:00 - 4:45', label: 'Drills', icon: 'fitness_center', color: 'text-red-500' },
-        { time: '4:45 - 5:00', label: 'Scrimmage', icon: 'sports_soccer', color: 'text-[#FFD54F]' }
-      ]
-    },
-  ];
-
-  const upcomingFocus = [
-    { title: 'The Zig-Zag Dribble', detail: 'Keeping the ball close while moving fast!', icon: 'gesture' },
-    { title: 'Rocket Goal Kicks', detail: 'Power and precision with the laces.', icon: 'bolt' },
-    { title: 'Dragon Communication', detail: 'Learning to roar for the ball and help friends.', icon: 'record_voice_over' }
-  ];
-
   return (
     <div className="max-w-4xl mx-auto px-4 animate-fade-up pb-20">
       <div className="bg-white rounded-[60px] shadow-2xl overflow-hidden border-4 border-slate-100">
@@ -28,8 +10,12 @@ export const Training: React.FC = () => {
           <div className="absolute inset-0 opacity-10 flex items-center justify-center">
             <span className="material-symbols-outlined text-[300px]">fitness_center</span>
           </div>
-          <h2 className="text-5xl font-kids mb-4 relative z-10">THE TRAINING CAVE</h2>
-          <p className="text-yellow-300 font-kids text-xl relative z-10">Sharpen your claws, ready your kicks!</p>
+          <h2 className="text-5xl font-kids mb-4 relative z-10 uppercase">
+            {trainingData.headerTitle}
+          </h2>
+          <p className="text-yellow-300 font-kids text-xl relative z-10">
+            {trainingData.headerSubtitle}
+          </p>
         </div>
         
         <div className="p-12 space-y-12">
@@ -39,8 +25,8 @@ export const Training: React.FC = () => {
               <span className="material-symbols-outlined text-[36px]">location_on</span>
             </div>
             <div>
-              <p className="font-kids text-2xl text-slate-900">360 Elm Street</p>
-              <p className="text-slate-500 font-medium">Penn Yan, NY • The Main Training Grounds</p>
+              <p className="font-kids text-2xl text-slate-900">{trainingData.locationName}</p>
+              <p className="text-slate-500 font-medium">{trainingData.locationDetails}</p>
             </div>
           </div>
 
@@ -51,11 +37,13 @@ export const Training: React.FC = () => {
                 <span className="material-symbols-outlined text-red-500">calendar_month</span>
                 Weekly Schedule
               </h3>
-              <span className="bg-red-50 text-red-600 text-[10px] font-black px-3 py-1 rounded-full border border-red-100 uppercase tracking-widest">Thursday Only</span>
+              <span className="bg-red-50 text-red-600 text-[10px] font-black px-3 py-1 rounded-full border border-red-100 uppercase tracking-widest">
+                {trainingData.scheduleBadge}
+              </span>
             </div>
             
             <div className="grid gap-4">
-              {sessions.map((s) => (
+              {trainingData.sessions.map((s) => (
                 <div key={s.day} className="p-8 bg-white border-2 border-slate-50 rounded-[32px] hover:border-red-500/20 transition-all hover:shadow-xl group">
                   <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-6">
@@ -83,7 +71,9 @@ export const Training: React.FC = () => {
                           </div>
                           <div>
                             <p className="font-kids text-xl text-slate-900">{phase.label}</p>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{idx === 0 ? 'Skills & Focus' : 'Match Simulation'}</p>
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                              {idx === 0 ? 'Skills & Focus' : 'Match Simulation'}
+                            </p>
                           </div>
                         </div>
                         <span className="bg-white px-3 py-1.5 rounded-xl text-[10px] font-black text-red-600 shadow-sm border border-slate-100">
@@ -103,7 +93,7 @@ export const Training: React.FC = () => {
               Next Practice Roadmap
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-              {upcomingFocus.map((item, idx) => (
+              {trainingData.upcomingFocus.map((item, idx) => (
                 <div key={idx} className="bg-white/80 p-5 rounded-3xl flex flex-col items-center text-center gap-3 shadow-sm border border-red-100/50">
                   <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center text-[#E53935]">
                     <span className="material-symbols-outlined text-[24px]">{item.icon}</span>
@@ -117,27 +107,31 @@ export const Training: React.FC = () => {
             </div>
           </div>
 
-          {/* Special Development Log - NEW SECTION */}
-          <div className="p-8 bg-emerald-50 rounded-[40px] border-4 border-dashed border-emerald-200 relative group">
-            <div className="absolute -top-6 left-10 bg-emerald-500 text-white px-6 py-2 rounded-full font-kids text-lg shadow-lg">
-              Squad Development History
+          {/* Special Development Log */}
+          {trainingData.historyLog && (
+            <div className="p-8 bg-emerald-50 rounded-[40px] border-4 border-dashed border-emerald-200 relative group">
+              <div className="absolute -top-6 left-10 bg-emerald-500 text-white px-6 py-2 rounded-full font-kids text-lg shadow-lg">
+                Squad Development History
+              </div>
+              <div className="flex flex-col md:flex-row items-center gap-8 mt-4">
+                <div className="w-20 h-20 rounded-3xl bg-white flex items-center justify-center text-emerald-500 shadow-sm shrink-0 group-hover:scale-110 transition-transform duration-500">
+                  <span className="material-symbols-outlined text-[42px]">history_edu</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-kids text-3xl text-slate-900 mb-2">{trainingData.historyLog.dateTitle}</h3>
+                  <p className="text-slate-600 text-lg font-medium leading-relaxed italic">
+                    "{trainingData.historyLog.description}"
+                  </p>
+                </div>
+                <div className="bg-white px-6 py-4 rounded-[28px] border-2 border-emerald-100 shadow-sm text-center min-w-[140px]">
+                  <span className="block text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">Status</span>
+                  <span className="text-slate-900 font-black uppercase tracking-tighter text-sm">
+                    {trainingData.historyLog.status}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col md:flex-row items-center gap-8 mt-4">
-              <div className="w-20 h-20 rounded-3xl bg-white flex items-center justify-center text-emerald-500 shadow-sm shrink-0 group-hover:scale-110 transition-transform duration-500">
-                <span className="material-symbols-outlined text-[42px]">history_edu</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-kids text-3xl text-slate-900 mb-2">Training Day: August 27</h3>
-                <p className="text-slate-600 text-lg font-medium leading-relaxed italic">
-                  "On this intensive development day, the dragons worked on sharpening their core techniques. Every player showed immense focus on growth and technical mastery. We roared through the drills and truly worked on that day to build our bright future!"
-                </p>
-              </div>
-              <div className="bg-white px-6 py-4 rounded-[28px] border-2 border-emerald-100 shadow-sm text-center min-w-[140px]">
-                 <span className="block text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">Status</span>
-                 <span className="text-slate-900 font-black uppercase tracking-tighter text-sm">Completed ✓</span>
-              </div>
-            </div>
-          </div>
+          )}
 
           {/* Weather/Extraordinary Notice */}
           <div className="bg-red-50 border-2 border-red-100 p-8 rounded-[32px] flex items-start gap-4">
@@ -145,7 +139,7 @@ export const Training: React.FC = () => {
             <div className="space-y-2">
               <p className="font-kids text-xl text-red-900">Important Parent Note</p>
               <p className="text-red-700/80 font-medium text-sm leading-relaxed">
-                If there are any changes to our schedule due to <span className="font-bold underline">weather</span> or <span className="font-bold underline">extraordinary circumstances</span>, we will notify parents immediately via our usual channels.
+                If there are any changes to our schedule due to <span className="underline font-bold">weather</span> or <span className="underline font-bold">extraordinary circumstances</span>, we will notify parents immediately via our usual channels.
               </p>
             </div>
           </div>
@@ -153,10 +147,10 @@ export const Training: React.FC = () => {
           {/* Gear List */}
           <div className="p-8 bg-yellow-400/10 rounded-[40px] border-4 border-dashed border-yellow-400 relative">
             <div className="absolute -top-6 left-10 bg-yellow-400 text-red-900 px-6 py-2 rounded-full font-kids text-lg shadow-lg">
-              Dragon Gear List
+              {trainingData.gearListTitle}
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-              {['Dragon Jersey', 'Magic Boots', 'Shin Guards', 'Full Water Bottle', 'Big Roar', 'Happy Face'].map(item => (
+              {trainingData.gearItems.map((item) => (
                 <div key={item} className="bg-white px-5 py-4 rounded-2xl flex items-center gap-3 shadow-sm border border-yellow-200">
                   <span className="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
                   <span className="text-sm font-bold text-slate-700">{item}</span>
@@ -168,8 +162,12 @@ export const Training: React.FC = () => {
       </div>
 
       <div className="mt-12 text-center">
-        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.5em]">Knappy & Schlappi Elite Squad</p>
+        <p className="text-slate-300 text-[10px] font-black uppercase tracking-[0.5em]">
+          {teamData.name} Squad
+        </p>
       </div>
     </div>
   );
 };
+
+export default Training;

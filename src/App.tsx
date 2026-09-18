@@ -50,7 +50,7 @@ export default function App() {
   }, [pendingRoars]);
 
   useEffect(() => {
-    const id = 'knappy-fonts';
+    const id = 'KNAPP-fonts';
     if (!document.getElementById(id)) {
       const link = document.createElement('link');
       link.id = id;
@@ -59,7 +59,7 @@ export default function App() {
       document.head.appendChild(link);
     }
 
-    const styleId = 'knappy-styles';
+    const styleId = 'KNAPP-styles';
     if (!document.getElementById(styleId)) {
       const style = document.createElement('style');
       style.id = styleId;
@@ -230,7 +230,7 @@ export default function App() {
 //   const [isRoarModalOpen, setIsRoarModalOpen] = useState(false);
 
 //   useEffect(() => {
-//     const id = 'knappy-fonts';
+//     const id = 'KNAPP-fonts';
 //     if (!document.getElementById(id)) {
 //       const link = document.createElement('link');
 //       link.id = id;
@@ -239,7 +239,7 @@ export default function App() {
 //       document.head.appendChild(link);
 //     }
 
-//     const styleId = 'knappy-styles';
+//     const styleId = 'KNAPP-styles';
 //     if (!document.getElementById(styleId)) {
 //       const style = document.createElement('style');
 //       style.id = styleId;

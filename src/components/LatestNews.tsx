@@ -1,41 +1,9 @@
 import React, { useState } from 'react';
 import { TEAM_PHOTOS } from '../data/teamPhotos';
-
-interface NewsItem {
-  id: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  tag: string;
-  highlight?: boolean;
-}
+import { NEWS_ITEMS } from '../data/newsData';
+import { teamData } from '../data/teamData';
 
 export const LatestNews: React.FC = () => {
-  const news: NewsItem[] = [
-    {
-      id: 'rooney-visit',
-      title: 'LEGEND ALERT: Wayne Rooney Visits the Nest!',
-      date: 'Oct 15, 2026',
-      excerpt: 'The former England captain dropped by to watch our U8s practice and shared some of his scoring secrets!',
-      tag: 'SPECIAL GUEST',
-      highlight: true,
-    },
-    {
-      id: '400-goals',
-      title: 'SQUAD GOALS: We Just Hit 400!',
-      date: 'Oct 14, 2026',
-      excerpt: "Charlie's screamer in the second half against the Whales was our 400th goal as a club! Pizza for everyone!",
-      tag: 'MILESTONE',
-    },
-    {
-      id: 'kits',
-      title: 'New Red-Fire Kits are Here!',
-      date: 'Oct 08, 2026',
-      excerpt: 'The new uniforms have arrived! Pick yours up this Thursday before practice. They look amazing!',
-      tag: 'CLUB NEWS',
-    },
-  ];
-
   const [activePhoto, setActivePhoto] = useState(0);
 
   const prevPhoto = () => {
@@ -50,13 +18,17 @@ export const LatestNews: React.FC = () => {
     <div className="max-w-5xl mx-auto px-4 space-y-12 animate-in zoom-in-95 duration-500 pb-16">
       {/* Title */}
       <div className="text-center">
-        <h2 className="text-4xl font-normal text-red-600 font-kids">LATEST ROARS</h2>
-        <p className="text-amber-800 font-medium italic">Inside the dragon's territory</p>
+        <h2 className="text-4xl font-normal text-red-600 font-kids uppercase">
+          LATEST {teamData.shortName === 'Dragons' ? 'ROARS' : 'NEWS'}
+        </h2>
+        <p className="text-amber-800 font-medium italic">
+          Inside {teamData.shortName}'s territory
+        </p>
       </div>
 
       {/* 3 News Articles */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {news.map((item) => (
+        {NEWS_ITEMS.map((item) => (
           <article
             key={item.id}
             className={`bg-white rounded-3xl overflow-hidden shadow-lg border-2 flex flex-col group transition-all duration-300 hover:-translate-y-1 ${
@@ -71,13 +43,8 @@ export const LatestNews: React.FC = () => {
                     item.highlight ? 'text-white/30' : 'text-[#E53935]/40'
                   }`}
                 >
-                  {item.id === 'rooney-visit' ? 'star' : 'newspaper'}
+                  {item.icon || (item.highlight ? 'star' : 'newspaper')}
                 </span>
-                {item.id === 'rooney-visit' && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white font-black text-6xl italic opacity-40 select-none">W.R.</span>
-                  </div>
-                )}
               </div>
               <span className="absolute top-4 left-4 z-20 bg-yellow-400 text-red-900 text-[10px] font-black px-3 py-1 rounded-full shadow-sm">
                 {item.tag}
@@ -92,7 +59,10 @@ export const LatestNews: React.FC = () => {
               <p className="text-sm text-amber-800/70 mb-6 flex-1 leading-relaxed italic">
                 "{item.excerpt}"
               </p>
-              <button className="text-red-600 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+              <button 
+                type="button"
+                className="text-red-600 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
+              >
                 SEE THE MOMENTS <span className="material-symbols-outlined text-[18px]">arrow_right_alt</span>
               </button>
             </div>
@@ -108,7 +78,9 @@ export const LatestNews: React.FC = () => {
               <span className="material-symbols-outlined text-[20px]">photo_library</span>
             </span>
             <div>
-              <h3 className="font-kids text-2xl text-slate-800 leading-none uppercase">DRAGON MOMENTS</h3>
+              <h3 className="font-kids text-2xl text-slate-800 leading-none uppercase">
+                {teamData.shortName} MOMENTS
+              </h3>
               <p className="text-xs font-semibold text-slate-400 mt-1">Snapshots from practices, matches, and team huddles</p>
             </div>
           </div>
@@ -145,7 +117,7 @@ export const LatestNews: React.FC = () => {
           {/* Caption Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6 text-white">
             <span className="bg-[#E53935] text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider w-max mb-1.5">
-              Match Highlight
+              Highlight
             </span>
             <h4 className="font-kids text-xl md:text-2xl leading-snug">
               {TEAM_PHOTOS[activePhoto].caption}
