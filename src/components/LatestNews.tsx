@@ -36,16 +36,26 @@ export const LatestNews: React.FC = () => {
             }`}
           >
             <div className={`h-48 relative overflow-hidden ${item.highlight ? 'bg-[#E53935]' : 'bg-[#FFEBEE]'}`}>
-              <div className="absolute inset-0 bg-yellow-400 opacity-10" />
-              <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                <span
-                  className={`material-symbols-outlined text-[80px] ${
-                    item.highlight ? 'text-white/30' : 'text-[#E53935]/40'
-                  }`}
-                >
-                  {item.icon || (item.highlight ? 'star' : 'newspaper')}
-                </span>
-              </div>
+              {item.image ? (
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" 
+                />
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-yellow-400 opacity-10" />
+                  <div className="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <span
+                      className={`material-symbols-outlined text-[80px] ${
+                        item.highlight ? 'text-white/30' : 'text-[#E53935]/40'
+                      }`}
+                    >
+                      {item.icon || (item.highlight ? 'star' : 'newspaper')}
+                    </span>
+                  </div>
+                </>
+              )}
               <span className="absolute top-4 left-4 z-20 bg-yellow-400 text-red-900 text-[10px] font-black px-3 py-1 rounded-full shadow-sm">
                 {item.tag}
               </span>
@@ -57,11 +67,19 @@ export const LatestNews: React.FC = () => {
                 {item.title}
               </h3>
              <p className="text-[#8D6E63] leading-relaxed font-medium mb-4">
-  {item.excerpt}
-</p>
+              {item.excerpt}
+            </p>
               <button 
                 type="button"
-                className="text-red-600 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
+                onClick={() => {
+                  if (item.id === 'season-calendar-poster') {
+                    const element = document.getElementById('team-moments');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
+                className="text-red-600 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all cursor-pointer"
               >
                 SEE THE MOMENTS <span className="material-symbols-outlined text-[18px]">arrow_right_alt</span>
               </button>
@@ -71,7 +89,7 @@ export const LatestNews: React.FC = () => {
       </div>
 
       {/* Dedicated Team Gallery Carousel Section */}
-      <div className="bg-white rounded-[36px] p-6 md:p-8 shadow-xl border-2 border-amber-100 space-y-6 max-w-3xl mx-auto">
+      <div id="team-moments" className="bg-white rounded-[36px] p-6 md:p-8 shadow-xl border-2 border-amber-100 space-y-6 max-w-3xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
           <div className="flex items-center gap-3">
             <span className="w-9 h-9 rounded-xl bg-red-50 text-[#E53935] flex items-center justify-center">

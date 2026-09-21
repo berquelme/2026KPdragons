@@ -1,3 +1,6 @@
+import tessPoster from '../assets/tessPoster.jpg';
+
+
 export interface TeamPhoto {
   url: string;
   caption: string;
@@ -10,10 +13,10 @@ export const TEAM_PHOTOS: TeamPhoto[] = [
     caption: 'Knapp & Schlappi Squad 2026',
     subtitle: 'Game day at Penn Yan Sports Complex',
   },
-  {
-    url: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80',
-    caption: 'First Win Celebrations',
-    subtitle: 'Unstoppable energy on the pitch',
+{
+    url: tessPoster,
+    caption: '2026 Season Match Calendar Poster',
+    subtitle: 'Inspired by the Captain Tsubasa Japanese cartoon soccer legend. Official schedule and player roster for each Dragon.'
   },
   {
     url: 'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80',

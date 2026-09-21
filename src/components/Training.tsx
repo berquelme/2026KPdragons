@@ -18,10 +18,10 @@ export const Training: React.FC = () => {
           </p>
         </div>
         
-        <div className="p-12 space-y-12">
+        <div className="p-6 md:p-12 space-y-12">
           {/* Location Details */}
           <div className="flex items-center gap-6 p-6 bg-slate-50 rounded-[32px] border-2 border-slate-100 group">
-            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-sm text-emerald-500">
+            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-sm text-emerald-500 shrink-0">
               <span className="material-symbols-outlined text-[36px]">location_on</span>
             </div>
             <div>
@@ -44,10 +44,10 @@ export const Training: React.FC = () => {
             
             <div className="grid gap-4">
               {trainingData.sessions.map((s) => (
-                <div key={s.day} className="p-8 bg-white border-2 border-slate-50 rounded-[32px] hover:border-red-500/20 transition-all hover:shadow-xl group">
-                  <div className="flex items-center justify-between mb-8">
+                <div key={s.day} className="p-6 md:p-8 bg-white border-2 border-slate-50 rounded-[32px] hover:border-red-500/20 transition-all hover:shadow-xl group">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                     <div className="flex items-center gap-6">
-                      <div className={`w-16 h-16 rounded-2xl ${s.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                      <div className={`w-16 h-16 rounded-2xl ${s.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform shrink-0`}>
                         <span className="material-symbols-outlined text-[32px]">{s.icon}</span>
                       </div>
                       <div>
@@ -55,8 +55,8 @@ export const Training: React.FC = () => {
                         <p className="text-slate-500 font-medium">{s.focus}</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-kids text-2xl text-red-600 leading-none">{s.time}</p>
+                    <div className="sm:text-right pl-22 sm:pl-0">
+                      <p className="font-kids text-xl md:text-2xl text-red-600 leading-none">{s.time}</p>
                       <span className="text-[10px] uppercase font-black text-slate-400 tracking-widest mt-1 block">Full Session</span>
                     </div>
                   </div>
@@ -66,7 +66,7 @@ export const Training: React.FC = () => {
                     {s.phases.map((phase, idx) => (
                       <div key={idx} className="bg-slate-50/50 p-5 rounded-3xl border border-slate-100 flex items-center justify-between group/phase hover:bg-white hover:shadow-md transition-all">
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center shrink-0">
                             <span className={`material-symbols-outlined text-[20px] ${phase.color}`}>{phase.icon}</span>
                           </div>
                           <div>
@@ -76,7 +76,7 @@ export const Training: React.FC = () => {
                             </p>
                           </div>
                         </div>
-                        <span className="bg-white px-3 py-1.5 rounded-xl text-[10px] font-black text-red-600 shadow-sm border border-slate-100">
+                        <span className="bg-white px-3 py-1.5 rounded-xl text-[10px] font-black text-red-600 shadow-sm border border-slate-100 shrink-0">
                           {phase.time}
                         </span>
                       </div>
@@ -88,7 +88,7 @@ export const Training: React.FC = () => {
           </div>
 
           {/* Next Practice Roadmap */}
-          <div className="p-8 bg-red-400/5 rounded-[40px] border-4 border-dashed border-red-400/30 relative">
+          <div className="pt-8 pb-8 px-6 md:p-8 bg-red-400/5 rounded-[40px] border-4 border-dashed border-red-400/30 relative mt-8">
             <div className="absolute -top-6 left-10 bg-[#E53935] text-white px-6 py-2 rounded-full font-kids text-lg shadow-lg">
               Next Practice Roadmap
             </div>
@@ -107,9 +107,9 @@ export const Training: React.FC = () => {
             </div>
           </div>
 
-          {/* Special Development Log */}
-          {trainingData.historyLog && (
-            <div className="p-8 bg-emerald-50 rounded-[40px] border-4 border-dashed border-emerald-200 relative group">
+          {/* Special Development Logs */}
+          {trainingData.historyLogs && trainingData.historyLogs.map((log, index) => (
+            <div key={index} className="pt-8 pb-8 px-6 md:p-8 bg-emerald-50 rounded-[40px] border-4 border-dashed border-emerald-200 relative group mt-8">
               <div className="absolute -top-6 left-10 bg-emerald-500 text-white px-6 py-2 rounded-full font-kids text-lg shadow-lg">
                 Squad Development History
               </div>
@@ -117,25 +117,25 @@ export const Training: React.FC = () => {
                 <div className="w-20 h-20 rounded-3xl bg-white flex items-center justify-center text-emerald-500 shadow-sm shrink-0 group-hover:scale-110 transition-transform duration-500">
                   <span className="material-symbols-outlined text-[42px]">history_edu</span>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-kids text-3xl text-slate-900 mb-2">{trainingData.historyLog.dateTitle}</h3>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="font-kids text-3xl text-slate-900 mb-2">{log.dateTitle}</h3>
                   <p className="text-slate-600 text-lg font-medium leading-relaxed italic">
-                    "{trainingData.historyLog.description}"
+                    "{log.description}"
                   </p>
                 </div>
                 <div className="bg-white px-6 py-4 rounded-[28px] border-2 border-emerald-100 shadow-sm text-center min-w-[140px]">
                   <span className="block text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">Status</span>
                   <span className="text-slate-900 font-black uppercase tracking-tighter text-sm">
-                    {trainingData.historyLog.status}
+                    {log.status}
                   </span>
                 </div>
               </div>
             </div>
-          )}
+          ))}
 
           {/* Weather/Extraordinary Notice */}
           <div className="bg-red-50 border-2 border-red-100 p-8 rounded-[32px] flex items-start gap-4">
-            <span className="material-symbols-outlined text-red-600 text-[32px] mt-1">info</span>
+            <span className="material-symbols-outlined text-red-600 text-[32px] mt-1 shrink-0">info</span>
             <div className="space-y-2">
               <p className="font-kids text-xl text-red-900">Important Parent Note</p>
               <p className="text-red-700/80 font-medium text-sm leading-relaxed">
@@ -145,14 +145,14 @@ export const Training: React.FC = () => {
           </div>
 
           {/* Gear List */}
-          <div className="p-8 bg-yellow-400/10 rounded-[40px] border-4 border-dashed border-yellow-400 relative">
+          <div className="pt-8 pb-8 px-6 md:p-8 bg-yellow-400/10 rounded-[40px] border-4 border-dashed border-yellow-400 relative mt-8">
             <div className="absolute -top-6 left-10 bg-yellow-400 text-red-900 px-6 py-2 rounded-full font-kids text-lg shadow-lg">
               {trainingData.gearListTitle}
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
               {trainingData.gearItems.map((item) => (
                 <div key={item} className="bg-white px-5 py-4 rounded-2xl flex items-center gap-3 shadow-sm border border-yellow-200">
-                  <span className="material-symbols-outlined text-green-500 text-[20px]">check_circle</span>
+                  <span className="material-symbols-outlined text-green-500 text-[20px] shrink-0">check_circle</span>
                   <span className="text-sm font-bold text-slate-700">{item}</span>
                 </div>
               ))}

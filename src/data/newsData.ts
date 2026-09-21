@@ -1,3 +1,5 @@
+import tessPoster from '../assets/tessPoster.jpg';
+
 export interface NewsItem {
   id: string;
   title: string;
@@ -6,9 +8,18 @@ export interface NewsItem {
   tag: string;
   highlight?: boolean;
   icon?: string;
+  image?: string; // Add this line
 }
 
 export const NEWS_ITEMS: NewsItem[] = [
+  {
+  id: 'season-calendar-poster',
+  title: '📅 Season 2026 Calendar Poster',
+  date: 'August, 2026',
+  excerpt: 'Ask your family member for the official schedule and match calendar poster created for each Baby Dragons players and families to keep track of our season!',
+  tag: 'TEAM SCHEDULE',
+  image: tessPoster,
+},
 {
   id: 'rhino-charge-award',
   title: ' 🦏 The Rhino Charge Award 🏆 : Bravery & Courage',

@@ -63,7 +63,7 @@ export const MATCHES_DATA: Match[] = [
 
     ],
   },
-  {
+ {
     id: 3,
     week: 3,
     dateStr: '2026-09-19T09:15:00',
@@ -71,6 +71,30 @@ export const MATCHES_DATA: Match[] = [
     timeDisplay: '9:15 AM',
     location: 'PENN YAN COMPLEX',
     opponent: 'WINETRAIL PROPERTIES',
+    result: 'DRAW 1 - 1',
+    resultType: 'draw',
+    dragonOfTheMatch: 'Caspian',
+    notes: 'Quick to the ball, great anticipation of opponent plays, highly disciplined defense and marking and orchestrated the opening goal!',
+    stats: [
+      // Add any player stats here if needed, e.g.:
+      // { playerNum: 8, goals: 1 },
+       // Jamie Daggett (#7): ⚽️x2 
+      { playerNum: 7, goals: 1, assists: 0 },
+
+      // Caspian Avellaneda (#3): 🤝
+      { playerNum: 8, assists: 1, saves:3 },
+
+
+      // Elijah Sherman (#9): ✋🏽
+      { playerNum: 9, saves: 2, assists: 0 },
+      //Bryson
+      { playerNum: 10, saves: 1, assists: 0 },
+    //ellie
+    //Bryson
+      { playerNum: 4, saves: 1, assists: 0 },
+
+
+    ],
   },
   {
     id: 4,
