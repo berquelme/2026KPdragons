@@ -1,4 +1,5 @@
 import tessPoster from '../assets/tessPoster.jpg';
+import healtySnacks from '../assets/healthySnack.jpg'
 
 
 export interface TeamPhoto {
@@ -19,9 +20,9 @@ export const TEAM_PHOTOS: TeamPhoto[] = [
     subtitle: 'Inspired by the Captain Tsubasa Japanese cartoon soccer legend. Official schedule and player roster for each Dragon.'
   },
   {
-    url: 'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Pre-Match Warmups',
-    subtitle: 'Focus, drills, and team huddles',
+    url: healtySnacks,
+    caption: 'Fuel Back & Recovery Spread',
+    subtitle: 'Nourishing the team with fun and healthy snacks, fresh fruit, and post-game refreshments',
   },
   {
     url: 'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80',

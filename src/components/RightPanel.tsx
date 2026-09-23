@@ -45,7 +45,7 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
   ];
 
   return (
-    <div className="w-[300px] h-screen sticky top-0 bg-white/30 backdrop-blur-2xl border-l border-slate-200/50 flex flex-col p-6 overflow-hidden z-50">
+    <div className="w-[300px] h-screen sticky top-0 bg-white/30 backdrop-blur-2xl border-l border-slate-200/50 flex flex-col p-6 overflow-y-auto z-50">
       <div className="flex flex-col gap-8">
         
         {/* Next Match Widget */}

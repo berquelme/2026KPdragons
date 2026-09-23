@@ -71,14 +71,21 @@ export const LatestNews: React.FC = () => {
             </p>
               <button 
                 type="button"
-                onClick={() => {
-                  if (item.id === 'season-calendar-poster') {
-                    const element = document.getElementById('team-moments');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                }}
+               onClick={() => {
+  let photoIndex = 0;
+  if (item.id === 'season-calendar-poster') {
+    photoIndex = 1; // points to the calendar poster in TEAM_PHOTOS
+  } else if (item.id === 'team-snacks') {
+    photoIndex = 2; // points to the healthy snacks in TEAM_PHOTOS
+  }
+  
+  setActivePhoto(photoIndex);
+
+  const element = document.getElementById('team-moments');
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+}}
                 className="text-red-600 font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all cursor-pointer"
               >
                 SEE THE MOMENTS <span className="material-symbols-outlined text-[18px]">arrow_right_alt</span>

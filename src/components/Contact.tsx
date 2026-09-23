@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { teamData } from '../data/teamData';
 
 const contacts = [
-  { role: 'Head Coach', name: 'Ber Almeida', icon: 'sports', email: 'ber@dragonsquad.com' },
-  { role: 'Team Manager', name: 'Megan Daggett', icon: 'assignment_ind', email: 'megan@dragonsquad.com' },
-  { role: 'Team Manager', name: 'Ash Avellaneda', icon: 'groups', email: 'ash@dragonsquad.com' },
+  { role: 'Head Coach', name: 'Ber A', icon: 'sports', email: 'ber@dragonsquad.com' },
+  { role: 'Team Manager', name: 'Megan D', icon: 'assignment_ind', email: 'megan@dragonsquad.com' },
+  { role: 'Team Manager', name: 'Ash Ave', icon: 'groups', email: 'ash@dragonsquad.com' },
 ];
 
 export const Contact: React.FC = () => {
