@@ -104,13 +104,39 @@ export const MATCHES_DATA: Match[] = [
     timeDisplay: '5:00 PM',
     location: 'PENN YAN COMPLEX',
     opponent: "DANN'S TAXES",
+        result: 'Win 3-0',
+    resultType: 'win',
+    dragonOfTheMatch: 'Ellie',
+    notes: 'Amazing hustle in attack today! Ellie was super fast and so exciting to watch out on the field',
+    stats: [
+      // Add any player stats here if needed, e.g.:
+      // { playerNum: 8, goals: 1 },
+       // Jamie Daggett (#7): ⚽️x2 
+      { playerNum: 7, goals: 3, saves: 1, assists: 0 },
+
+      // Caspian Avellaneda (#3): 🤝
+      { playerNum: 8, assists: 0, saves:1 },
+  // Caspian Avellaneda (#3): 🤝
+      { playerNum: 1, assists: 0, saves:1 },
+
+      // Elijah Sherman (#9): ✋🏽
+      { playerNum: 9, saves: 1, assists: 1 },
+      //Bryson
+      { playerNum: 10, saves: 0, assists: 1 },
+    //ellie
+    //Bryson
+      { playerNum: 4, saves: 0, assists: 1 },
+
+
+    ],
+    
   },
   {
     id: 5,
     week: 5,
     dateStr: '2026-10-03T09:15:00',
     dateDisplay: 'SATURDAY, OCT 3, 2026',
-    timeDisplay: '9:15 AM',
+    timeDisplay: '8:00 AM',
     location: 'PENN YAN COMPLEX',
     opponent: 'LNB',
   },
