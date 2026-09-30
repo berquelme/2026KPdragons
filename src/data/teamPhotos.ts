@@ -1,5 +1,6 @@
 import tessPoster from '../assets/tessPoster.jpg';
 import healtySnacks from '../assets/healthySnack.jpg'
+import tessFifaCard from '../assets/fifacardExplain.webp'
 
 
 export interface TeamPhoto {
@@ -25,8 +26,8 @@ export const TEAM_PHOTOS: TeamPhoto[] = [
     subtitle: 'Nourishing the team with fun and healthy snacks, fresh fruit, and post-game refreshments',
   },
   {
-    url: 'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80',
-    caption: 'Dragon Spirit in Action',
-    subtitle: 'Passing drills and match preparation',
+    url: tessFifaCard,
+    caption: 'Dragon Card Spotlight',
+    subtitle: "A fun, illustrated breakdown of Dragon's soccer attributes",
   },
 ];

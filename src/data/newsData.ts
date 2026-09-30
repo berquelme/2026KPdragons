@@ -1,5 +1,6 @@
 import tessPoster from '../assets/tessPoster.jpg';
 import healthySnack from '../assets/healthySnack.jpg'
+import tessFifaCard from '../assets/fifacardExplain.webp'
 
 export interface NewsItem {
   id: string;
@@ -49,4 +50,13 @@ export const NEWS_ITEMS: NewsItem[] = [
     tag: 'COACH NOTE',
     icon: 'favorite',
   },
+  {
+  id: 'tess-fifa-explained',
+  title: '⚡ Player Card Attributes Explained',
+  date: 'Sep 29, 2026',
+  excerpt:
+    "Each player will get a Fifa attributes card. A kid-friendly breakdown of Fifa player's attributes, including pace, shooting, passing, dribbling, defending, and physicality.",
+  tag: 'PLAYER SPOTLIGHT',
+  image: tessFifaCard,
+},
 ];
