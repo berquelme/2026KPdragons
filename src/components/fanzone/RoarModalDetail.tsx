@@ -1,13 +1,14 @@
 import React from 'react';
 import { FanMessage } from '../../types';
 
-// Props passed down from FanZone:
-// - msg: the active cheer being viewed
-// - isUnlocked: whether coach privileges are active
-// - onClose: dismisses the modal
-// - onPromptUnlock: triggers passkey prompt if coach wants to delete on the fly
-// - onDelete: executes deletion from Supabase / localStorage
-// - cleanPlayerDisplay: helper function to format player name
+// Step 1: Component Interface Contract
+// Defines the data and functions required to view and manage an individual cheer:
+// - msg: The active cheer message object (content, author, recipient player, badge color)
+// - isUnlocked: Boolean flag indicating if coach permissions are currently active
+// - onClose: Callback to close the modal and return to the tactical pitch
+// - onPromptUnlock: Fast-track function allowing a coach to unlock powers via window prompt
+// - onDelete: Deletion handler to permanently remove the cheer
+// - cleanPlayerDisplay: Formatter function to strip jersey numbers (e.g., '#8') from display text
 interface RoarModalDetailProps {
   msg: FanMessage;
   isUnlocked: boolean;
@@ -25,24 +26,29 @@ export const RoarModalDetail: React.FC<RoarModalDetailProps> = ({
   onDelete,
   cleanPlayerDisplay,
 }) => (
-  // 1. Backdrop Overlay:
-  // Tapping the dark background calls onClose() to dismiss the modal cleanly.
+  // Step 2: Modal Backdrop Overlay
+  // - fixed inset-0 z-[100]: Covers the entire viewport and elevates above all pitch elements.
+  // - bg-slate-950/80 backdrop-blur-xl: Creates the modern frosted dark backdrop.
+  // - onClick={onClose}: Tapping anywhere outside the modal card dismisses it cleanly.
   <div
     className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-xl"
     onClick={onClose}
   >
-    {/* 2. Modal Card Container:
-        KEY PATTERN: e.stopPropagation() prevents taps inside the modal from reaching 
-        the backdrop, ensuring clicks on text or buttons don't accidentally close it. */}
+    {/* Step 3: Modal Card Container
+        - CS Rule (Event Bubbling): onClick={(e) => e.stopPropagation()} prevents clicks
+          inside this white card from bubbling up to the backdrop, so clicking text, buttons,
+          or whitespace inside the card does NOT accidentally close the modal.
+        - border-b-[12px] border-[#E53935]: Team red dynamic accent bar across the bottom. */}
     <div
       className="bg-white w-full max-w-md rounded-[48px] p-8 md:p-10 shadow-2xl border-b-[12px] border-[#E53935] animate-hero relative overflow-hidden"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="relative z-10">
         
-        {/* Header: Player badge, recipient name, and author */}
+        {/* Step 4: Card Header (Recipient, Author, & Coach Lock Icon) */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
+            {/* Visual badge using cheer's designated accent color */}
             <div
               className="w-16 h-16 rounded-3xl flex items-center justify-center text-white shadow-xl"
               style={{ backgroundColor: msg.color || '#E53935' }}
@@ -59,7 +65,9 @@ export const RoarModalDetail: React.FC<RoarModalDetailProps> = ({
             </div>
           </div>
 
-          {/* Discreet lock icon allowing a coach to elevate permissions on the spot */}
+          {/* Discreet Coach Lock trigger:
+              If Coach Mode is locked, this small padlock allows a coach to elevate permissions
+              on the fly directly from the modal without scrolling back up to the top drawer. */}
           {!isUnlocked && (
             <button
               type="button"
@@ -72,13 +80,15 @@ export const RoarModalDetail: React.FC<RoarModalDetailProps> = ({
           )}
         </div>
 
-        {/* The Cheer Content */}
+        {/* Step 5: The Cheer Quote
+            Styled with prominent italic typography for easy reading by players and parents */}
         <p className="text-slate-600 text-xl md:text-2xl font-medium italic leading-relaxed mb-8">
           "{msg.content}"
         </p>
 
-        {/* Action Controls */}
+        {/* Step 6: Action Buttons */}
         <div className="flex flex-col gap-3">
+          {/* Default Dismiss Button */}
           <button
             type="button"
             onClick={onClose}
@@ -87,7 +97,9 @@ export const RoarModalDetail: React.FC<RoarModalDetailProps> = ({
             GOT IT!
           </button>
 
-          {/* Delete action only rendered if Coach Mode is unlocked */}
+          {/* Conditional Coach Delete Action:
+              Only mounts into the DOM when isUnlocked is true, allowing authorized coaches
+              to immediately purge inappropriate or expired messages. */}
           {isUnlocked && (
             <button
               type="button"

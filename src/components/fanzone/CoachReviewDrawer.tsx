@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { PendingRoar } from '../../App';
 
-// Props passed down from FanZone:
-// - pendingRoars: list of submitted cheers waiting for approval
-// - activePasskey: coach pin (from teamData.coachPasskey)
-// - isUnlocked: boolean flag tracking if the coach has successfully entered the passkey
-// - onUnlock: callback to elevate session to unlocked state
-// - onLockClose: callback to relock and collapse the drawer
-// - onApprove: callback to push cheer to Supabase/pitch
-// - onReject: callback to discard cheer
-// - cleanPlayerDisplay: helper function to format player names
+// Step 1: Component Contract (Props)
+// Defines the communication bridge between FanZone and this moderation drawer:
+// - pendingRoars: Array of submitted cheers that are waiting for coach inspection
+// - activePasskey: The secret code required to unlock moderation actions
+// - isUnlocked: Boolean flag indicating if the coach entered the correct passkey
+// - onUnlock: Callback to switch FanZone state to unlocked
+// - onLockClose: Callback to relock and collapse the drawer
+// - onApprove: Callback to move a cheer from pending to the active pitch
+// - onReject: Callback to discard an inappropriate cheer
+// - cleanPlayerDisplay: Formatter function to strip jersey numbers from display names
 interface CoachReviewDrawerProps {
   pendingRoars: PendingRoar[];
   activePasskey: string;
@@ -31,11 +32,14 @@ export const CoachReviewDrawer: React.FC<CoachReviewDrawerProps> = ({
   onReject,
   cleanPlayerDisplay,
 }) => {
-  // Local state for the password field input
+  // Step 2: Local Form State
+  // Tracks what the coach types into the password field before submitting.
+  // Keeping this state local prevents re-rendering the whole tactical pitch on every keystroke.
   const [pin, setPin] = useState('');
 
-  // 1. Password Verification:
-  // Checks entered pin against the team passkey (case-insensitive)
+  // Step 3: Passkey Validation Handler
+  // Compares the entered PIN against activePasskey (case-insensitive and trimmed).
+  // If correct, it triggers onUnlock(); otherwise, it warns the user without granting access.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (pin.trim().toLowerCase() === activePasskey.toLowerCase()) {
@@ -46,8 +50,12 @@ export const CoachReviewDrawer: React.FC<CoachReviewDrawerProps> = ({
   };
 
   return (
+    // Step 4: Drawer Container
+    // Frosted glass styling (backdrop-blur-xl) that sits right above the pitch
     <div className="w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-[32px] mb-8 animate-in fade-in zoom-in-95">
-      {/* State A: Locked Form - Prompts for Coach Pin */}
+      
+      {/* Step 5: Conditional Branch A - Locked State
+          If the coach has not unlocked yet, only display the password entry form */}
       {!isUnlocked ? (
         <form onSubmit={handleSubmit} className="flex items-center justify-center gap-3">
           <input
@@ -65,8 +73,10 @@ export const CoachReviewDrawer: React.FC<CoachReviewDrawerProps> = ({
           </button>
         </form>
       ) : (
-        /* State B: Unlocked Queue - Displays pending roars */
+        /* Step 6: Conditional Branch B - Unlocked Moderation Queue
+           Once verified, reveal the moderation panel and pending cheers */
         <div>
+          {/* Header with counter and Lock & Close button */}
           <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
             <h4 className="font-kids text-lg text-white">
               Pending Moderation Queue ({pendingRoars.length})
@@ -80,19 +90,21 @@ export const CoachReviewDrawer: React.FC<CoachReviewDrawerProps> = ({
             </button>
           </div>
 
-          {/* Empty state when no roars are waiting */}
+          {/* Sub-branch: Empty Queue Notice */}
           {pendingRoars.length === 0 ? (
             <p className="text-xs text-slate-400 italic text-center py-4">
               No cheers waiting for review. All clear, Coach!
             </p>
           ) : (
-            /* Scrollable list of cheers awaiting moderation */
+            /* Sub-branch: Scrollable Cheer Cards
+               max-h-64 with overflow-y-auto ensures the queue never pushes the pitch offscreen */
             <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
               {pendingRoars.map((roar) => (
                 <div
                   key={roar.id}
                   className="bg-slate-900/80 border border-white/10 p-4 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3"
                 >
+                  {/* Left: Cheer Details (Recipient, Author, Message) */}
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] font-black uppercase text-[#FFD54F]">
@@ -107,8 +119,10 @@ export const CoachReviewDrawer: React.FC<CoachReviewDrawerProps> = ({
                       "{roar.message}"
                     </p>
                   </div>
-                  {/* Action buttons: Reject or Approve */}
+
+                  {/* Right: Moderation Action Buttons */}
                   <div className="flex items-center gap-2 shrink-0 self-end md:self-center">
+                    {/* Discard cheer */}
                     <button
                       type="button"
                       onClick={() => onReject?.(roar.id)}
@@ -116,6 +130,7 @@ export const CoachReviewDrawer: React.FC<CoachReviewDrawerProps> = ({
                     >
                       Reject
                     </button>
+                    {/* Approve and post directly to tactical pitch */}
                     <button
                       type="button"
                       onClick={() => onApprove?.(roar.id)}
