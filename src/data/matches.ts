@@ -139,6 +139,29 @@ export const MATCHES_DATA: Match[] = [
     timeDisplay: '8:00 AM',
     location: 'PENN YAN COMPLEX',
     opponent: 'LNB',
+         result: 'Win 5-0',
+    resultType: 'win',
+    dragonOfTheMatch: 'Tess',
+    notes: 'A true crowd favorite today. Her work rate was unmatched across the field, recovering loose balls, winning challenges, and locking the opponent into their own half.',
+    stats: [
+      // Add any player stats here if needed, e.g.:
+      // { playerNum: 8, goals: 1 },
+       // Jamie Daggett (#7): ⚽️x2 
+      { playerNum: 7, goals: 4, saves: 0, assists: 0 },
+
+      // Caspian Avellaneda (#3): 🤝
+      { playerNum: 8, goals: 1, assists: 0, saves:0 },
+
+      // Tess (#2): ✋🏽
+      { playerNum: 3, saves: 0, assists: 2 },
+      //Elijah
+      { playerNum: 9, saves: 0, assists: 1 },
+    //ellie
+      { playerNum: 4, saves: 0, assists: 1 },
+       //Leon
+      { playerNum: 5, saves: 0, assists: 1 },
+      
+    ]
   },
   {
     id: 6,
