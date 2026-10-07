@@ -1,6 +1,8 @@
 import tessPoster from '../assets/tessPoster.jpg';
-import healthySnack from '../assets/healthySnack.jpg'
-import tessFifaCard from '../assets/fifacardExplain.webp'
+import healthySnack from '../assets/healthySnack.jpg';
+import tessFifaCard from '../assets/fifacardExplain.webp';
+import friendsParade from '../assets/homeComing.webp';
+import rhinoCharge from '../assets/rhino_award.webp';
 
 export interface NewsItem {
   id: string;
@@ -11,6 +13,7 @@ export interface NewsItem {
   highlight?: boolean;
   icon?: string;
   image?: string;
+  photoIndex?: number; // Directly links to carousel position
 }
 
 export const NEWS_ITEMS: NewsItem[] = [
@@ -22,6 +25,7 @@ export const NEWS_ITEMS: NewsItem[] = [
       'Ask your family member for the official schedule and match calendar poster created for each Baby Dragons player and family to keep track of our season!',
     tag: 'TEAM SCHEDULE',
     image: tessPoster,
+    photoIndex: 1, // Points to poster slide
   },
   {
     id: 'rhino-charge-award',
@@ -30,7 +34,9 @@ export const NEWS_ITEMS: NewsItem[] = [
     excerpt:
       'Soccer involves natural contact, and taking a tumble is not ideal, but it happens! In training, we practice preparing for those collisions safely. This award honors the player who took a hit, bounced right back up with a smile, and kept having fun.',
     tag: 'TEAM TRADITION',
-    icon: 'shield',
+    icon: rhinoCharge,
+    image: rhinoCharge,
+    photoIndex: 4, // Points to Rhino Award slide
   },
   {
     id: 'team-snacks',
@@ -39,7 +45,8 @@ export const NEWS_ITEMS: NewsItem[] = [
     excerpt:
       'Family and friends are welcome to bring post-game snacks! Please focus on healthy choices like bananas, fruit, and water. Before handing anything out, I will always check with parents first to confirm it is okay for their child. Please let me know about any allergies so we keep everyone safe.',
     tag: 'TEAM REMINDER',
-    image: healthySnack // served from public/
+    image: healthySnack,
+    photoIndex: 2, // Points to Snacks slide
   },
   {
     id: 'fuel-their-fire',
@@ -49,14 +56,26 @@ export const NEWS_ITEMS: NewsItem[] = [
       'After each game, tell your child one thing they did that you truly enjoyed watching. Hearing this from us builds confidence, resilience, and joy far more than any score.',
     tag: 'COACH NOTE',
     icon: 'favorite',
+    photoIndex: 0, // Fallback to team squad photo
   },
   {
-  id: 'tess-fifa-explained',
-  title: '⚡ Player Card Attributes Explained',
-  date: 'Sep 29, 2026',
-  excerpt:
-    "Each player will get a Fifa attributes card. A kid-friendly breakdown of Fifa player's attributes, including pace, shooting, passing, dribbling, defending, and physicality.",
-  tag: 'PLAYER SPOTLIGHT',
-  image: tessFifaCard,
-},
+    id: 'tess-fifa-explained',
+    title: '⚡ Player Card Attributes Explained',
+    date: 'Sep 29, 2026',
+    excerpt:
+      "Each player will get a Fifa attributes card. A kid-friendly breakdown of Fifa player's attributes, including pace, shooting, passing, dribbling, defending, and physicality.",
+    tag: 'PLAYER SPOTLIGHT',
+    image: tessFifaCard,
+    photoIndex: 3, // Points to FIFA card slide
+  },
+  {
+    id: 'Homecome parade',
+    title: '🐉 Dragons at the Home coming parade ',
+    date: 'October 3',
+    excerpt:
+      'Following an invitation to represent youth soccer in the Homecoming Parade, the kids proudly and happily marched down the route, waving to the crowd and showing off their team spirit.',
+    tag: 'Parade in Penn Yan',
+    image: friendsParade,
+    photoIndex: 5, // Points to parade / squad moment
+  },
 ];
