@@ -5,15 +5,15 @@ export const AssociationBanner: React.FC = () => {
     <>
       <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/25 border border-white/20 text-[#FFD54F]">
         <span className="w-1.5 h-1.5 rounded-full bg-[#FFD54F] animate-ping" />
-        Yates Soccer Association • Penn Yan, NY
+        Yates County Youth Soccer League  • Penn Yan, NY
       </span>
-      <span className="text-[#FFD54F]">NY District Youth Soccer</span>
+      <span className="text-[#FFD54F]">New York State Youth Soccer</span>
       <span className="text-white/95 font-medium normal-case tracking-wide text-xs">
         Guiding young players in fundamentals, prioritizing safety through play, and sparking a lifelong love for the beautiful game
       </span>
       <span className="inline-flex items-center gap-1 text-white">
         <span className="material-symbols-outlined text-[14px] text-[#FFD54F]">sports_soccer</span>
-        2026 Season Underway
+        2026 Fall Season Underway
       </span>
       <span className="text-white/75">Baby Dragons U8 • Red-Fire Kits Active</span>
     </>
