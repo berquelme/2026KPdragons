@@ -201,7 +201,7 @@ export const MATCHES_DATA: Match[] = [
   {
     id: 7,
     week: 7,
-    dateStr: '2026-10-17T09:15:00',
+    dateStr: '2026-10-17T08:00:00',
     dateDisplay: 'SATURDAY, OCT 17, 2026',
     timeDisplay: '8:00 AM',
     location: 'PENN YAN COMPLEX',
@@ -210,7 +210,7 @@ export const MATCHES_DATA: Match[] = [
   {
     id: 8,
     week: 8,
-    dateStr: '2026-10-23T17:30:00',
+    dateStr: '2026-10-23T17:00:00',
     dateDisplay: 'FRIDAY, OCT 23, 2026',
     timeDisplay: '5:00 PM',
     location: 'PENN YAN COMPLEX',
