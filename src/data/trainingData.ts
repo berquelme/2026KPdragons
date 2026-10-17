@@ -77,7 +77,7 @@ export const trainingData: TrainingConfig = {
       icon: 'sports_soccer' 
     },
     { 
-      title: 'Qick Passing', 
+      title: 'Quick Passing', 
       detail: 'Scanning field and find a team mate to connect with.', 
       icon: 'flag' 
     }
