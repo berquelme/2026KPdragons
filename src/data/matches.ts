@@ -201,11 +201,32 @@ export const MATCHES_DATA: Match[] = [
   {
     id: 7,
     week: 7,
-    dateStr: '2026-10-17T08:00:00',
+    dateStr: '2026-10-17T10:00:00',
     dateDisplay: 'SATURDAY, OCT 17, 2026',
-    timeDisplay: '8:00 AM',
+    timeDisplay: '10:00 AM',
     location: 'PENN YAN COMPLEX',
     opponent: 'LNB',
+    result: 'WIN 4 - 0',
+    resultType: 'win',
+    dragonOfTheMatch: 'Violet',
+    notes: "Pure determination in the cold! Violet dominated every inch of the pitch wherever assigned, shutting down rival attacks, winning 50-50 balls, and delivering two clinical assists in a 4-0 clean-sheet shutout!",
+    stats: [
+      // Jamie Daggett (#7): ⚽️x3
+      { playerNum: 7, goals: 3, assists: 0, saves: 0 },
+
+      // Noah Easling (#6): ⚽️
+      { playerNum: 6, goals: 1, assists: 0, saves: 0 },
+
+      // Violet Tones (#1): 🤝x2
+      { playerNum: 1, goals: 0, assists: 2, saves: 0 },
+
+      // Elijah Sherman (#9): 🤝
+      { playerNum: 9, goals: 0, assists: 1, saves: 0 },
+
+      // Caspian Avellaneda (#8): 🤝
+      { playerNum: 8, goals: 0, assists: 1, saves: 0 },
+    ],
+  
   },
   {
     id: 8,

@@ -1,3 +1,5 @@
+
+
 export interface FifaAttribute {
   code: 'PAC' | 'SHO' | 'PAS' | 'DRI' | 'DEF' | 'PHY';
   label: string;
@@ -123,7 +125,7 @@ export const spotlightPlayers: SpotlightPlayer[] = [
     name: 'Tess',
     lastName: 'Almeida',
     role: 'MIDFIELDER',
-    img: '/players/tess.png',
+    img: '/Spotess.png',
     stats: [
       {
         code: 'PAC',

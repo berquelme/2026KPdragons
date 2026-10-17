@@ -47,14 +47,15 @@ export const PlayerSpotlight: React.FC = () => {
                 </div>
 
             {/* Cutout or Fallback Icon */}
-            <div className="relative w-full flex-1 flex items-center justify-center my-auto pt-6">
+            <div className="relative w-full flex-1 flex items-center justify-center my-auto pt-6 min-h-[220px]">
               {player.img ? (
                 <img 
+                  key={player.img}
                   src={player.img} 
                   alt={player.name} 
-                  className="max-h-56 object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]"
+                  className="relative z-10 max-h-56 object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]"
                   onError={(e) => {
-                    (e.target as HTMLElement).style.display = 'none';
+                    console.error('Failed to load image:', player.img);
                   }}
                 />
               ) : (

@@ -49,9 +49,9 @@ export const trainingData: TrainingConfig = {
   gearItems: ['Team Jersey', 'Cleats', 'Shin Guards', 'Full Water Bottle', 'Big Energy', 'Positive Attitude'],
   sessions: [
     { 
-      day: 'Thursday Session • Oct 8', 
+      day: 'Thursday Session • Oct 23', 
       time: '5:00 PM - 6:00 PM', 
-      focus: 'Tricking your rival, hide the ball & Corner Sets', 
+      focus: 'Tricking your rival, hide the ball & quick passing', 
       icon: 'rocket_launch', 
       color: 'bg-[#E53935]',
       phases: [
@@ -77,8 +77,8 @@ export const trainingData: TrainingConfig = {
       icon: 'sports_soccer' 
     },
     { 
-      title: 'Corner Kick Set Plays', 
-      detail: 'Testing set-piece positioning, runs into the box, and defensive resets during live scrimmage play.', 
+      title: 'Qick Passing', 
+      detail: 'Scanning field and find a team mate to connect with.', 
       icon: 'flag' 
     }
   ],
