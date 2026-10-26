@@ -203,7 +203,7 @@ export const MATCHES_DATA: Match[] = [
     week: 7,
     dateStr: '2026-10-17T10:00:00',
     dateDisplay: 'SATURDAY, OCT 17, 2026',
-    timeDisplay: '10:00 AM',
+    timeDisplay: '8:00 AM',
     location: 'PENN YAN COMPLEX',
     opponent: 'LNB',
     result: 'WIN 4 - 0',
@@ -228,7 +228,7 @@ export const MATCHES_DATA: Match[] = [
     ],
   
   },
-  {
+{
     id: 8,
     week: 8,
     dateStr: '2026-10-23T17:00:00',
@@ -236,5 +236,22 @@ export const MATCHES_DATA: Match[] = [
     timeDisplay: '5:00 PM',
     location: 'PENN YAN COMPLEX',
     opponent: 'SUBWAY',
+    result: 'WIN 3 - 0',
+    resultType: 'win',
+    dragonOfTheMatch: 'The Entire Team',
+    notes: "Pure soccer harmony to close the season! The Dragons moved the ball like a symphony, combining relentless front-foot pressure with selfless passing to spark a clinical 3-0 clean sheet win!",
+    stats: [
+      // Caspian Avellaneda (#8): ⚽️x2
+      { playerNum: 8, goals: 2, assists: 0, saves: 0 },
+
+      // Pax Lepp (#2): 🤝
+      { playerNum: 2, goals: 0, assists: 1, saves: 0 },
+
+      // Leon Woodard (#5): 🤝
+      { playerNum: 5, goals: 0, assists: 1, saves: 0 },
+
+      // Violet Tones (#1): ✋🏽
+      { playerNum: 1, goals: 0, assists: 0, saves: 1 },
+    ],
   },
 ];
