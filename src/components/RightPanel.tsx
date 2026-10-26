@@ -14,10 +14,10 @@ interface RightPanelProps {
 export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }) => {
   const now = new Date();
 
-  // Dynamically find the very next fixture relative to today
-  const nextMatch = MATCHES_DATA.find((m) => new Date(m.dateStr || '') >= now) || MATCHES_DATA[0];
+  // Find next upcoming match; evaluates to undefined once all matches are concluded
+  const nextMatch = MATCHES_DATA.find((m) => new Date(m.dateStr || '') >= now);
 
-  // Live countdown to next match
+  // Live countdown to next match (active when fixtures exist in the future)
   const matchCountdown = useCountdown(nextMatch?.dateStr || '');
 
   // Format date display safely
@@ -29,7 +29,7 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
       }).format(new Date(nextMatch.dateStr))
     : nextMatch?.dateDisplay || 'Upcoming Match';
 
-  // Calculate dynamic season pulse stats
+  // Calculate dynamic season stats
   const seasonStats = useMemo(() => calculateSeasonStats(MATCHES_DATA), []);
 
   const quickLinks: { label: string; value: PageType; icon: string }[] = [
@@ -43,8 +43,8 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
     <div className="w-[300px] h-screen sticky top-0 bg-white/30 backdrop-blur-2xl border-l border-slate-200/50 flex flex-col p-6 overflow-y-auto z-50">
       <div className="flex flex-col gap-8">
         
-        {/* Next Match Widget */}
-        {nextMatch && (
+        {/* Top Widget: Countdown when season is active, Celebration card when concluded */}
+        {nextMatch ? (
           <div className="bg-[#E53935] rounded-[32px] p-6 text-white relative overflow-hidden group shadow-xl shadow-red-500/10">
             <div className="absolute -right-4 -top-4 opacity-10 rotate-12 group-hover:rotate-0 transition-transform">
               <span className="material-symbols-outlined text-[80px]">sports_soccer</span>
@@ -122,6 +122,46 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
               </button>
             </div>
           </div>
+        ) : (
+          /* Season Completed Celebration Card */
+          <div className="bg-gradient-to-br from-[#E53935] via-[#D32F2F] to-slate-950 rounded-[32px] p-6 text-white relative overflow-hidden group shadow-xl shadow-red-500/15 border border-amber-400/30">
+            <div className="absolute -right-4 -top-4 opacity-15 rotate-12 group-hover:rotate-0 transition-transform">
+              <span className="material-symbols-outlined text-[90px] text-amber-300">military_tech</span>
+            </div>
+
+            <div className="relative z-10 flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-amber-300 text-lg">emoji_events</span>
+                <span className="text-[10px] font-black text-amber-300 uppercase tracking-widest block">
+                  Season Complete
+                </span>
+              </div>
+
+              <h4 className="font-impact text-2xl uppercase text-white tracking-wide leading-tight drop-shadow-sm">
+                Incredible Season, Dragons!
+              </h4>
+
+              <div className="bg-black/35 rounded-2xl p-3 backdrop-blur-md border border-white/10 shadow-inner">
+                <p className="text-white/95 text-xs font-semibold leading-relaxed mb-2.5">
+                  Some players started with zero experience, but through match-like training situations, they learned to trust their choices and own the field. They enjoyed the season with pure heart, enthusiasm, and growth!
+                </p>
+                <div className="flex flex-col gap-1 pt-2 border-t border-white/10 text-[10px] font-black text-amber-300 uppercase tracking-wider text-center">
+                  <span>7-0-1 · 28 GF · 1 GA</span>
+                  <span className="flex items-center justify-center gap-1 text-amber-400">
+                    🏆 7 Clean Sheets
+                  </span>
+                </div>
+              </div>
+
+              <button 
+                type="button"
+                onClick={() => onNavigate('MATCHES')}
+                className="w-full py-2.5 bg-[#FFCA28] text-slate-950 rounded-full border-2 border-white font-black text-[11px] uppercase tracking-wider hover:brightness-105 transition-all shadow-md cursor-pointer"
+              >
+                View Match Recaps
+              </button>
+            </div>
+          </div>
         )}
 
         {/* Secondary Navigation */}
@@ -158,8 +198,8 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
         {/* Dynamic Season Pulse */}
         <SeasonPulse
           stats={seasonStats}
-          focusTitle="Next Focus"
-          focusHeadline="Connect with Passes. Open Up & Call for It!"
+          focusTitle="Season Reflection"
+          focusHeadline="Team First. Pure Effort & Pride!"
           quote={teamData.slogan || 'Relentless effort, team spirit, and pure joy.'}
         />
       </div>
@@ -176,11 +216,13 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onNavigate, activePage }
 
 export default RightPanel;
 
-// import React from 'react';
+// import React, { useMemo } from 'react';
 // import { PageType } from '../types';
 // import { MATCHES_DATA } from '../data/matches';
 // import { teamData } from '../data/teamData';
 // import { useCountdown } from '../hooks/useCountdown';
+// import { calculateSeasonStats } from '../utils/seasonStats';
+// import { SeasonPulse } from './SeasonPulse';
 
 // interface RightPanelProps {
 //   onNavigate: (page: PageType) => void;
@@ -205,15 +247,8 @@ export default RightPanel;
 //       }).format(new Date(nextMatch.dateStr))
 //     : nextMatch?.dateDisplay || 'Upcoming Match';
 
-//   // Calculate dynamic goals scored from matches
-//   const totalGoals = MATCHES_DATA.reduce((acc, match) => {
-//     const goalsThisMatch = match.stats?.reduce((sum, s) => sum + (s.goals || 0), 0) || 0;
-//     return acc + goalsThisMatch;
-//   }, 0);
-
-//   const pulseValue = totalGoals > 0 ? totalGoals : 'Ready';
-//   const pulseLabel = totalGoals > 0 ? 'Goals Scored' : 'Season Kickoff';
-//   const pulsePercent = totalGoals > 0 ? Math.min(totalGoals * 5, 100) : 15;
+//   // Calculate dynamic season pulse stats
+//   const seasonStats = useMemo(() => calculateSeasonStats(MATCHES_DATA), []);
 
 //   const quickLinks: { label: string; value: PageType; icon: string }[] = [
 //     { label: teamData.homeFieldTitle || 'The Nest', value: 'HOME', icon: 'home' },
@@ -339,27 +374,12 @@ export default RightPanel;
 //         </div>
 
 //         {/* Dynamic Season Pulse */}
-//         <div className="bg-white/60 rounded-[40px] p-8 border border-white shadow-sm">
-//           <div className="flex items-center gap-3 mb-6">
-//             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-//             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Season Pulse</span>
-//           </div>
-//           <div className="space-y-4">
-//             <div className="flex justify-between items-end">
-//               <span className="text-3xl font-impact text-slate-900">{pulseValue}</span>
-//               <span className="text-[9px] font-black text-[#E53935] uppercase tracking-tighter mb-1">{pulseLabel}</span>
-//             </div>
-//             <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-//               <div 
-//                 className="h-full bg-[#E53935] rounded-full transition-all duration-500" 
-//                 style={{ width: `${pulsePercent}%` }}
-//               />
-//             </div>
-//             <p className="text-[10px] text-slate-400 font-medium italic">
-//               "{teamData.slogan || 'Building confidence, resilience, and teamwork every match!'}"
-//             </p>
-//           </div>
-//         </div>
+//         <SeasonPulse
+//           stats={seasonStats}
+//           focusTitle="Next Focus"
+//           focusHeadline="Connect with Passes. Open Up & Call for It!"
+//           quote={teamData.slogan || 'Relentless effort, team spirit, and pure joy.'}
+//         />
 //       </div>
 
 //       {/* Bottom Version */}
